@@ -19,8 +19,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install a project with a clean slate
-      run: npm ci
+    - name: Install Packages
+      run: npm install
     - name: Run Tests
       run: npm test
     - name: Deploy to GH Pages
