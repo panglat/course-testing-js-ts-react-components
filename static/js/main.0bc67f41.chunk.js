@@ -1,2 +1,0 @@
-(this["webpackJsonpcourse-testing-js-ts-react-components"]=this["webpackJsonpcourse-testing-js-ts-react-components"]||[]).push([[0],[,,,function(e,t,n){e.exports=n(10)},,,,,function(e,t,n){},function(e,t,n){},function(e,t,n){"use strict";n.r(t);var c=n(0),s=n.n(c),o=n(2),r=n.n(o),a=(n(8),n(9),function(){return s.a.createElement("div",{className:"app"},"App")});r.a.render(s.a.createElement(s.a.StrictMode,null,s.a.createElement(a,null)),document.getElementById("root"))}],[[3,1,2]]]);
-//# sourceMappingURL=main.0bc67f41.chunk.js.map
