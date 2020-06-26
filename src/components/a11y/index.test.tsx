@@ -4,7 +4,7 @@ import { axe } from 'jest-axe';
 
 import A11y from '.';
 
-test('renders A11y component', async () => {
+test('the form is accessible', async () => {
   const { container } = render(<A11y />);
   const results = await axe(container);
   expect(results).toHaveNoViolations();
