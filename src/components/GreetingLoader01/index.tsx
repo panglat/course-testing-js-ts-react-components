@@ -3,7 +3,7 @@ import * as api from 'api';
 
 import './styles.scss';
 interface GreetingLoader01Props {
-  loadGreeting: jest.Mock<
+  loadGreeting?: jest.Mock<
     Promise<{
       data: {
         greeting: string;
