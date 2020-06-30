@@ -1,16 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent, getByRole } from '@testing-library/react';
 import ErrorBoundary from '.';
 import { reportError as mockReportError } from 'api';
 
 jest.mock('api');
 
 let spy: jest.SpyInstance;
-let mockReportErrorTypes: jest.Mock;
+let mockReportErrorTyped: jest.Mock;
 
 beforeEach(() => {
   spy = jest.spyOn(console, 'error').mockImplementation(() => {});
-  mockReportErrorTypes = mockReportError as jest.Mock;
+  mockReportErrorTyped = mockReportError as jest.Mock;
 });
 afterEach(() => jest.clearAllMocks());
 afterAll(() => {
@@ -26,8 +26,15 @@ function Bomb({ shouldThrown }: { shouldThrown?: boolean }) {
 }
 
 test('calls reportError and renders that there was a problem', () => {
-  mockReportErrorTypes.mockResolvedValueOnce({ success: true });
-  const { rerender } = render(
+  mockReportErrorTyped.mockResolvedValueOnce({ success: true });
+  const {
+    rerender,
+    getByText,
+    getByRole,
+    queryByRole,
+    queryByText,
+    debug,
+  } = render(
     <ErrorBoundary>
       <Bomb />
     </ErrorBoundary>
@@ -41,8 +48,28 @@ test('calls reportError and renders that there was a problem', () => {
 
   const error = expect.any(Error);
   const info = { componentStack: expect.stringContaining('Bomb') };
-  expect(mockReportError).toHaveBeenCalledWith(error, info);
-  expect(mockReportError).toHaveBeenCalledTimes(1);
+  expect(mockReportErrorTyped).toHaveBeenCalledWith(error, info);
+  expect(mockReportErrorTyped).toHaveBeenCalledTimes(1);
 
   expect(console.error).toHaveBeenCalledTimes(2);
+
+  expect(getByRole('alert').textContent).toMatchInlineSnapshot(
+    '"There was a problem."'
+  );
+
+  spy.mockClear();
+  mockReportErrorTyped.mockClear();
+
+  rerender(
+    <ErrorBoundary>
+      <Bomb />
+    </ErrorBoundary>
+  );
+
+  fireEvent.click(getByText(/try again/i));
+
+  expect(mockReportErrorTyped).not.toHaveBeenCalled();
+  expect(console.error).not.toHaveBeenCalled();
+  expect(queryByRole('alert')).not.toBeInTheDocument();
+  expect(queryByText(/try again/i)).not.toBeInTheDocument();
 });
