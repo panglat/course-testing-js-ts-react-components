@@ -5,6 +5,7 @@ import A11y from 'components/a11y';
 import GreetingLoader01 from 'components/GreetingLoader01';
 import HiddenMessage from 'components/HiddenMessage';
 import ErrorBoundary from 'components/ErrorBoundary';
+import PostEditor01Markups from 'components/PostEditor01Markups';
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           Throw Error
         </button>
       </ErrorBoundary>
+      <PostEditor01Markups />
     </div>
   );
 };
