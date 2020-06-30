@@ -1,5 +1,6 @@
 // this is just a fake module to simulate interacting with a server
 
+import { ErrorInfo } from 'react';
 import { Greeting } from 'models/Greeting';
 
 // simulate the network request time...
@@ -26,8 +27,9 @@ async function fetchRandomGreeting() {
 
 // a fire-and-forget function to report errors
 // for componentDidCatch
-async function reportError() {
+async function reportError(error: Error, errorInfo: ErrorInfo) {
   await sleep(1000);
+  console.log('reportError', error, errorInfo);
   return { success: true };
 }
 
