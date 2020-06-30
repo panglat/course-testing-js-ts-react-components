@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, getByRole } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import ErrorBoundary from '.';
 import { reportError as mockReportError } from 'api';
 
@@ -27,24 +27,22 @@ function Bomb({ shouldThrown }: { shouldThrown?: boolean }) {
 
 test('calls reportError and renders that there was a problem', () => {
   mockReportErrorTyped.mockResolvedValueOnce({ success: true });
-  const {
-    rerender,
-    getByText,
-    getByRole,
-    queryByRole,
-    queryByText,
-    debug,
-  } = render(
+  const { rerender, getByText, getByRole, queryByRole, queryByText } =
+    /* render(
     <ErrorBoundary>
       <Bomb />
     </ErrorBoundary>
-  );
+  );*/
+    render(<Bomb />, { wrapper: ErrorBoundary });
 
+  /*
   rerender(
     <ErrorBoundary>
       <Bomb shouldThrown />
     </ErrorBoundary>
   );
+*/
+  rerender(<Bomb shouldThrown />);
 
   const error = expect.any(Error);
   const info = { componentStack: expect.stringContaining('Bomb') };
@@ -60,11 +58,7 @@ test('calls reportError and renders that there was a problem', () => {
   spy.mockClear();
   mockReportErrorTyped.mockClear();
 
-  rerender(
-    <ErrorBoundary>
-      <Bomb />
-    </ErrorBoundary>
-  );
+  rerender(<Bomb />);
 
   fireEvent.click(getByText(/try again/i));
 
