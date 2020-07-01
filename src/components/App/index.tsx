@@ -24,7 +24,7 @@ const App: React.FC = () => {
           Throw Error
         </button>
       </ErrorBoundary>
-      <PostEditor01Markups />
+      <PostEditor01Markups user={{ id: 'user-1' }} />
     </div>
   );
 };
