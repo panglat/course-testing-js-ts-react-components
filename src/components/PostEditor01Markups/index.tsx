@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { savePost } from 'api';
+import { Redirect } from 'react-router';
 
 import './styles.scss';
 
@@ -13,6 +14,7 @@ const PostEditor01Markups: React.FC<props> = ({ user }) => {
     tags: HTMLInputElement;
   }
   const [isSaving, setIsSaving] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -24,7 +26,10 @@ const PostEditor01Markups: React.FC<props> = ({ user }) => {
       content: content.value,
       tags: tags.value.split(',').map((t) => t.trim()),
       authorId: user.id,
-    });
+    }).then(() => setRedirect(true));
+  }
+  if (redirect) {
+    return <Redirect to="/" />;
   }
 
   return (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './styles.scss';
 import FavoriteNumber from 'components/FavoriteNumber';
 import A11y from 'components/a11y';
@@ -9,7 +10,7 @@ import PostEditor01Markups from 'components/PostEditor01Markups';
 
 const App: React.FC = () => {
   return (
-    <div className="app">
+    <Router>
       <FavoriteNumber />
       <A11y />
       <GreetingLoader01 />
@@ -25,7 +26,7 @@ const App: React.FC = () => {
         </button>
       </ErrorBoundary>
       <PostEditor01Markups user={{ id: 'user-1' }} />
-    </div>
+    </Router>
   );
 };
 
