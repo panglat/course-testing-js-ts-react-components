@@ -25,6 +25,7 @@ const PostEditor01Markups: React.FC<props> = ({ user }) => {
       title: title.value,
       content: content.value,
       tags: tags.value.split(',').map((t) => t.trim()),
+      date: new Date().toISOString(),
       authorId: user.id,
     }).then(() => setRedirect(true));
   }

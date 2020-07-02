@@ -22,6 +22,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
     content: 'Test content',
     tags: ['tag1', 'tag2'],
   };
+  const preDate = new Date().getTime();
   const { getByText, getByLabelText } = render(
     <PostEditor01Markups user={fakeUser} />
   );
@@ -35,8 +36,15 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(submitButton).toBeDisabled();
   expect(mockSavePost).toHaveBeenCalledWith({
     ...fakePost,
+    date: expect.any(String),
     authorId: fakeUser.id,
   });
   expect(mockSavePost).toHaveBeenCalledTimes(1);
+  const postDate = new Date().getTime();
+  const date = new Date(
+    (mockSavePost as jest.Mock).mock.calls[0][0].date
+  ).getTime();
+  expect(date).toBeGreaterThanOrEqual(preDate);
+  expect(date).toBeLessThanOrEqual(postDate);
   await wait(() => expect(mockRedirect).toHaveBeenCalledWith({ to: '/' }, {}));
 });
