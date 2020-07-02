@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/course-testing-js-ts-react-components/static/css/main.d85327b9.chunk.css",
-    "main.js": "/course-testing-js-ts-react-components/static/js/main.75f78b43.chunk.js",
-    "main.js.map": "/course-testing-js-ts-react-components/static/js/main.75f78b43.chunk.js.map",
+    "main.css": "/course-testing-js-ts-react-components/static/css/main.2e0fe391.chunk.css",
+    "main.js": "/course-testing-js-ts-react-components/static/js/main.023476c3.chunk.js",
+    "main.js.map": "/course-testing-js-ts-react-components/static/js/main.023476c3.chunk.js.map",
     "runtime-main.js": "/course-testing-js-ts-react-components/static/js/runtime-main.c4503925.js",
     "runtime-main.js.map": "/course-testing-js-ts-react-components/static/js/runtime-main.c4503925.js.map",
-    "static/js/2.c408a4ae.chunk.js": "/course-testing-js-ts-react-components/static/js/2.c408a4ae.chunk.js",
-    "static/js/2.c408a4ae.chunk.js.map": "/course-testing-js-ts-react-components/static/js/2.c408a4ae.chunk.js.map",
+    "static/js/2.0c568427.chunk.js": "/course-testing-js-ts-react-components/static/js/2.0c568427.chunk.js",
+    "static/js/2.0c568427.chunk.js.map": "/course-testing-js-ts-react-components/static/js/2.0c568427.chunk.js.map",
     "index.html": "/course-testing-js-ts-react-components/index.html",
-    "precache-manifest.707caffe18085a454e0413de0eab77f6.js": "/course-testing-js-ts-react-components/precache-manifest.707caffe18085a454e0413de0eab77f6.js",
+    "precache-manifest.1df4856e624234a052d1f1a9a43dba58.js": "/course-testing-js-ts-react-components/precache-manifest.1df4856e624234a052d1f1a9a43dba58.js",
     "service-worker.js": "/course-testing-js-ts-react-components/service-worker.js",
-    "static/css/main.d85327b9.chunk.css.map": "/course-testing-js-ts-react-components/static/css/main.d85327b9.chunk.css.map",
-    "static/js/2.c408a4ae.chunk.js.LICENSE.txt": "/course-testing-js-ts-react-components/static/js/2.c408a4ae.chunk.js.LICENSE.txt"
+    "static/css/main.2e0fe391.chunk.css.map": "/course-testing-js-ts-react-components/static/css/main.2e0fe391.chunk.css.map",
+    "static/js/2.0c568427.chunk.js.LICENSE.txt": "/course-testing-js-ts-react-components/static/js/2.0c568427.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c4503925.js",
-    "static/js/2.c408a4ae.chunk.js",
-    "static/css/main.d85327b9.chunk.css",
-    "static/js/main.75f78b43.chunk.js"
+    "static/js/2.0c568427.chunk.js",
+    "static/css/main.2e0fe391.chunk.css",
+    "static/js/main.023476c3.chunk.js"
   ]
 }
