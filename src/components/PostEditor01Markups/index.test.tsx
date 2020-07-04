@@ -31,20 +31,30 @@ const postBuilder = build<{ title: string; content: string; tags: string[] }>(
   }
 );
 
-test('renders a form with title, content, tags, and a submit button', async () => {
-  (mockSavePost as jest.Mock).mockReturnValueOnce(Promise.resolve());
+const renderEditor = () => {
   const fakeUser = userBuilder();
   const fakePost = postBuilder();
+  const utils = render(<PostEditor01Markups user={fakeUser} />);
+  (utils.getByLabelText(/title/i) as HTMLInputElement).value = fakePost.title;
+  (utils.getByLabelText(/content/i) as HTMLInputElement).value =
+    fakePost.content;
+  (utils.getByLabelText(
+    /tags/i
+  ) as HTMLInputElement).value = fakePost.tags.join(', ');
+  const submitButton = utils.getByText(/submit/i);
+
+  return {
+    ...utils,
+    fakeUser,
+    fakePost,
+    submitButton,
+  };
+};
+
+test('renders a form with title, content, tags, and a submit button', async () => {
   const preDate = new Date().getTime();
-  const { getByText, getByLabelText } = render(
-    <PostEditor01Markups user={fakeUser} />
-  );
-  (getByLabelText(/title/i) as HTMLInputElement).value = fakePost.title;
-  (getByLabelText(/content/i) as HTMLInputElement).value = fakePost.content;
-  (getByLabelText(/tags/i) as HTMLInputElement).value = fakePost.tags.join(
-    ', '
-  );
-  const submitButton = getByText(/submit/i);
+  (mockSavePost as jest.Mock).mockReturnValueOnce(Promise.resolve());
+  const { submitButton, fakeUser, fakePost } = renderEditor();
   fireEvent.click(submitButton);
   expect(submitButton).toBeDisabled();
   expect(mockSavePost).toHaveBeenCalledWith({
@@ -67,10 +77,8 @@ test('renders a form with title, content, tags, and a submit button', async () =
   (mockSavePost as jest.Mock).mockRejectedValueOnce({
     data: { error: testError },
   });
-  const fakeUser = userBuilder();
-  const { getByText, findByRole } = render(
-    <PostEditor01Markups user={fakeUser} />
-  );
+
+  const { getByText, findByRole } = renderEditor();
   const submitButton = getByText(/submit/i);
   fireEvent.click(submitButton);
   const postError = await findByRole('alert');
