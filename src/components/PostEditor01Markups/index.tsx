@@ -15,6 +15,7 @@ const PostEditor01Markups: React.FC<props> = ({ user }) => {
   }
   const [isSaving, setIsSaving] = useState(false);
   const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -27,7 +28,13 @@ const PostEditor01Markups: React.FC<props> = ({ user }) => {
       tags: tags.value.split(',').map((t) => t.trim()),
       date: new Date().toISOString(),
       authorId: user.id,
-    }).then(() => setRedirect(true));
+    }).then(
+      () => setRedirect(true),
+      (response) => {
+        setIsSaving(false);
+        setError(response.data.error);
+      }
+    );
   }
   if (redirect) {
     return <Redirect to="/" />;
@@ -44,6 +51,7 @@ const PostEditor01Markups: React.FC<props> = ({ user }) => {
       <button type="submit" disabled={isSaving}>
         Submit
       </button>
+      {error && <div role="alert">{error}</div>}
     </form>
   );
 };
