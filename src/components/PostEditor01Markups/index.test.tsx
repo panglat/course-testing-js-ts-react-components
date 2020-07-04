@@ -3,6 +3,7 @@ import { Redirect as mockRedirect } from 'react-router';
 import { render, fireEvent, wait } from '@testing-library/react';
 import PostEditor01Markups from '.';
 import { savePost as mockSavePost } from 'api';
+import { build, fake, sequence } from '@jackfranklin/test-data-bot';
 
 jest.mock('react-router', () => {
   return {
@@ -16,12 +17,23 @@ afterEach(() => jest.clearAllMocks());
 
 test('renders a form with title, content, tags, and a submit button', async () => {
   (mockSavePost as jest.Mock).mockReturnValueOnce(Promise.resolve());
-  const fakeUser = { id: 'user-1' };
-  const fakePost = {
-    title: 'Test Title',
-    content: 'Test content',
-    tags: ['tag1', 'tag2'],
-  };
+  const userBuilder = build<{ id: string }>('User', {
+    fields: {
+      id: sequence((s) => `user-${s}`),
+    },
+  });
+  const fakeUser = userBuilder();
+  const postBuilder = build<{ title: string; content: string; tags: string[] }>(
+    'Post',
+    {
+      fields: {
+        title: fake((f) => f.lorem.words()),
+        content: fake((f) => f.lorem.paragraphs().replace(/\r/g, '')),
+        tags: fake((f) => [f.lorem.word(), f.lorem.word(), f.lorem.word()]),
+      },
+    }
+  );
+  const fakePost = postBuilder();
   const preDate = new Date().getTime();
   const { getByText, getByLabelText } = render(
     <PostEditor01Markups user={fakeUser} />
