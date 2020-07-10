@@ -7,6 +7,7 @@ import GreetingLoader01 from 'components/GreetingLoader01';
 import HiddenMessage from 'components/HiddenMessage';
 import ErrorBoundary from 'components/ErrorBoundary';
 import PostEditor01Markups from 'components/PostEditor01Markups';
+import Main from 'components/Main';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         </button>
       </ErrorBoundary>
       <PostEditor01Markups user={{ id: 'user-1' }} />
+      <Main />
     </Router>
   );
 };
