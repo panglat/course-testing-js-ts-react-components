@@ -1,6 +1,6 @@
 import { INCREMENT, DECREMENT, Actions, State } from './types';
 
-const initialState: State = {
+export const initialState: State = {
   count: 0,
 };
 
