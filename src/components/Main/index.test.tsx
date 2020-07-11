@@ -13,3 +13,12 @@ test('main renders about and home and I can navigate to those pages', () => {
   fireEvent.click(getByText(/about/i));
   expect(getByRole('heading')).toHaveTextContent(/about/i);
 });
+
+test('landing on a bad page shows no match component', () => {
+  const { getByRole } = render(
+    <MemoryRouter initialEntries={['/something-that-does-not-match']}>
+      <Main />
+    </MemoryRouter>
+  );
+  expect(getByRole('heading')).toHaveTextContent(/404/i);
+});
