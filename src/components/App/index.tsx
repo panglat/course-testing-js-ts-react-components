@@ -11,6 +11,7 @@ import PostEditor01Markups from 'components/PostEditor01Markups';
 import Main from 'components/Main';
 import { store } from 'store/configureStore';
 import Counter from 'components/Counter';
+import TestUseCounter from 'components/TestUseCounter';
 
 const App: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const App: React.FC = () => {
       <Provider store={store}>
         <Counter />
       </Provider>
+      <TestUseCounter />
     </Router>
   );
 };
