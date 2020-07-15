@@ -12,6 +12,7 @@ import Main from 'components/Main';
 import { store } from 'store/configureStore';
 import Counter from 'components/Counter';
 import TestUseCounter from 'components/TestUseCounter';
+import Modal from 'components/Modal';
 
 const App: React.FC = () => {
   return (
@@ -36,6 +37,7 @@ const App: React.FC = () => {
         <Counter />
       </Provider>
       <TestUseCounter />
+      <Modal>Modal Portal Test</Modal>
     </Router>
   );
 };
