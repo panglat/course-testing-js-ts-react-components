@@ -13,6 +13,7 @@ import { store } from 'store/configureStore';
 import Counter from 'components/Counter';
 import TestUseCounter from 'components/TestUseCounter';
 import Modal from 'components/Modal';
+import Countdown from 'components/Countdown';
 
 const App: React.FC = () => {
   return (
@@ -38,6 +39,7 @@ const App: React.FC = () => {
       </Provider>
       <TestUseCounter />
       <Modal>Modal Portal Test</Modal>
+      Counter: <Countdown />
     </Router>
   );
 };
