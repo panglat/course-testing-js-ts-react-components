@@ -33,7 +33,7 @@ async function reportError(error: Error, errorInfo: ErrorInfo) {
   return { success: true };
 }
 
-async function submitForm() {
+async function submitForm(obj: any) {
   await sleep(1000);
   return { success: true };
 }
